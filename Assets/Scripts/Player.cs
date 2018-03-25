@@ -33,18 +33,18 @@ public class Player : NetworkBehaviour {
         SetDefaults();
     }
 
-    void Update()
-    {
-        if (!isLocalPlayer)
-        {
-            return;
-        }
+    //void Update()
+    //{
+    //    if (!isLocalPlayer)
+    //    {
+    //        return;
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            RpcTakeDamage(9999);
-        }
-    }
+    //    if (Input.GetKeyDown(KeyCode.K))
+    //    {
+    //        RpcTakeDamage(9999);
+    //    }
+    //}
 
     [ClientRpc]
     public void RpcTakeDamage(int _amount)
@@ -89,7 +89,7 @@ public class Player : NetworkBehaviour {
     
     private IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(GameManager.instance.matchSettings.respawnTime);
 
         SetDefaults();
         Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
